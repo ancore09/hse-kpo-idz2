@@ -9,6 +9,16 @@ public class FileProcessor {
         this.directoryPath = directory;
     }
 
+    // check if directory exists given a path
+    /**
+     * Check if the directory exists
+     * @return true if the directory exists, false otherwise
+     */
+    public boolean validateDirectory(String directoryPath) {
+        File dir = new File(directoryPath);
+        return dir.exists() && dir.isDirectory();
+    }
+
     /**
      * @return true if all files exist, false otherwise
      */

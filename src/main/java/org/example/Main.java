@@ -1,10 +1,21 @@
 package org.example;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String root = "/Users/ancored/IdeaProjects/kpo-idz2/test_dir";
+        String root;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the path to the directory: ");
+        root = scanner.nextLine();
+
+        FileProcessor processor = new FileProcessor(root);
+        if (!processor.validateDirectory(root)) {
+            System.out.println("Invalid directory");
+            return;
+        }
 
         DependencyGraph graph = new DependencyGraph(root);
 
@@ -18,7 +29,6 @@ public class Main {
             return;
         }
 
-        FileProcessor processor = new FileProcessor(root);
         if (!processor.validateExistance(graph.getFiles())) {
             System.out.println("Some files don't exist");
             return;
@@ -32,6 +42,7 @@ public class Main {
         String content = processor.concatFiles(files);
         try {
             processor.writeToFile("output.txt", content);
+            System.out.println("\nOutput written to output.txt:");
             System.out.println(content);
         } catch (Exception e) {
             System.out.println("Error writing to file");
