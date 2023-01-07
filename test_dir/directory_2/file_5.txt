@@ -1,0 +1,2 @@
+require directory_1/file_3.txt
+require file_4.txt
