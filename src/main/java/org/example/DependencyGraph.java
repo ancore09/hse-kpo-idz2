@@ -68,10 +68,10 @@ public class DependencyGraph {
             // Read the file line by line
             while ((line = br.readLine()) != null) {
                 // Check if the line starts with "require"
-                if (line.startsWith("require")) {
+                if (line.startsWith("require '")) {
                     // Extract the dependency file name
-                    String dependency = line.substring("require".length()).trim();
-                    fileDependencies.add(dependency);
+                    String dependency = line.substring("require '".length()).trim();
+                    fileDependencies.add(dependency.substring(0, dependency.length() - 1));
                 }
             }
 
